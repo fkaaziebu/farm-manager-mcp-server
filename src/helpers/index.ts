@@ -31,3 +31,24 @@ export function formatAlert(feature: AlertFeature): string {
     '---',
   ].join('\n');
 }
+
+export const makeFarmRequest = async <T>(
+  url: string,
+  options?: RequestInit,
+): Promise<T | null> => {
+  try {
+    const res = await fetch(url, {
+      method: options?.method || 'GET',
+      headers: {
+        Accept: 'application/json',
+        ...options?.headers,
+      },
+      body: options?.body,
+    });
+    if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+    return await res.json();
+  } catch (error) {
+    console.error('Farm request error:', error);
+    return null;
+  }
+};
