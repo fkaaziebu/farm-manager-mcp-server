@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { ConfigService } from '@nestjs/config';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { tools } from './tools';
 
@@ -9,7 +8,7 @@ export class AppService {
   private server: McpServer;
   private transport: StdioServerTransport | null = null;
 
-  constructor(private configService: ConfigService) {
+  constructor() {
     // Initialize MCP server
     this.server = new McpServer({
       name: 'weather',
