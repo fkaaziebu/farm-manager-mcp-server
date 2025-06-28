@@ -17,6 +17,7 @@ export class AppService {
     });
     // add server tools
     tools.map((tool) =>
+      // @ts-expect-error error
       this.server.tool(tool.name, tool.description, tool.input, tool.fn),
     );
     this.runServer();
